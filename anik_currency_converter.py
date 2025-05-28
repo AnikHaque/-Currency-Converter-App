@@ -11,7 +11,7 @@ class CurrencyConverter:
     }
 
   def __init__(self, amount, from_currency, to_currency, logger):
-    
+
      """
      ইনস্ট্যান্স অ্যাট্রিবিউট সেট করা হচ্ছে
     """
@@ -38,3 +38,21 @@ def convert(self, user):
         self.logger.log(user, self.amount, self.from_currency, converted_amount, self.to_currency)
 
         return converted_amount
+        
+
+        @classmethod
+    def update_exchange_rate(cls, currency_code, new_rate):
+        """
+        কারেন্সির এক্সচেঞ্জ রেট আপডেট করার ক্লাস মেথড
+        """
+        currency_code = currency_code.upper()
+        if not cls.is_valid_currency(currency_code):
+            raise ValueError("Invalid currency code")
+        cls.exchange_rates[currency_code] = new_rate
+
+    @staticmethod
+    def is_valid_currency(currency_code):
+        """
+        কারেন্সি কোড valid কিনা যাচাই করে
+        """
+        return currency_code.upper() in CurrencyConverter.exchange_rates
