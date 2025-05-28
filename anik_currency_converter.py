@@ -10,6 +10,9 @@ class CurrencyConverter:
         'BDT': 110.0,
     }
 
+
+
+
   def __init__(self, amount, from_currency, to_currency, logger):
 
      """
@@ -19,6 +22,9 @@ class CurrencyConverter:
         self.from_currency = from_currency.upper()
         self.to_currency = to_currency.upper()
         self.logger = logger  # Association - Logger ক্লাসের অবজেক্ট ইনপুট হিসেবে নিচ্ছে
+
+
+
 
 def convert(self, user):
         """
@@ -38,7 +44,10 @@ def convert(self, user):
         self.logger.log(user, self.amount, self.from_currency, converted_amount, self.to_currency)
 
         return converted_amount
-        
+
+
+
+
 
         @classmethod
     def update_exchange_rate(cls, currency_code, new_rate):
@@ -50,9 +59,29 @@ def convert(self, user):
             raise ValueError("Invalid currency code")
         cls.exchange_rates[currency_code] = new_rate
 
+
+
+
     @staticmethod
     def is_valid_currency(currency_code):
         """
         কারেন্সি কোড valid কিনা যাচাই করে
         """
         return currency_code.upper() in CurrencyConverter.exchange_rates
+
+
+        
+
+
+        # Logger ক্লাস তৈরি করা হয়েছে, যেটা conversion লগ রাখে
+class Logger:
+    def __init__(self):
+        self.logs = []
+
+    def log(self, user, amount, from_currency, result, to_currency):
+        """
+        ইউজারের conversion লগ করা হচ্ছে
+        """
+        entry = f"User: {user} converted {amount} {from_currency} to {result} {to_currency}"
+        print("LOG:", entry)  # CLI তে লগ প্রিন্ট করা হচ্ছে
+        self.logs.append(entry)
