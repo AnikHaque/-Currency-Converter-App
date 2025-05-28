@@ -88,7 +88,7 @@ class Logger:
 
 
 
-        # CLI Interface
+        # CLI Interface create
 if __name__ == "__main__":
     logger = Logger()
     print("=== Currency Converter CLI App ===")
