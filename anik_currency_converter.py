@@ -70,7 +70,7 @@ def convert(self, user):
         return currency_code.upper() in CurrencyConverter.exchange_rates
 
 
-        
+
 
 
         # Logger ক্লাস তৈরি করা হয়েছে, যেটা conversion লগ রাখে
@@ -85,3 +85,23 @@ class Logger:
         entry = f"User: {user} converted {amount} {from_currency} to {result} {to_currency}"
         print("LOG:", entry)  # CLI তে লগ প্রিন্ট করা হচ্ছে
         self.logs.append(entry)
+
+
+
+        # CLI Interface
+if __name__ == "__main__":
+    logger = Logger()
+    print("=== Currency Converter CLI App ===")
+
+    try:
+        user = input("Enter your name: ")
+        amount = float(input("Enter the amount: "))
+        from_currency = input("From Currency (e.g. USD): ")
+        to_currency = input("To Currency (e.g. EUR): ")
+
+        converter = CurrencyConverter(amount, from_currency, to_currency, logger)
+        result = converter.convert(user)
+
+        print(f"{amount} {from_currency.upper()} = {result} {to_currency.upper()}")
+    except Exception as e:
+        print("Error:", e)
